@@ -6,8 +6,4 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
   end
-
-  def course_params
-    params.require(:course).permit(:image)
-  end
 end

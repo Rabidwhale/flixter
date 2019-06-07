@@ -8,6 +8,7 @@ class Instructor::CoursesController < ApplicationController
 
   def create
     @course = current_user.courses.create(course_params)
+    @course.image = params[:course].fetch(:image)
     if @course.valid?
       redirect_to instructor_course_path(@course)
     else

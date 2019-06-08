@@ -2,13 +2,13 @@ class Instructor::CoursesController < ApplicationController
   before_action :authenticate_user!
   before_action :require_authorized_for_current_course, only: [:show]
 
+  current_course.image
   def new
     @course = Course.new
   end
 
   def create
     @course = current_user.courses.create(course_params)
-    @course.image = params[:course].fetch(:image)
     if @course.valid?
       redirect_to instructor_course_path(@course)
     else
@@ -17,6 +17,8 @@ class Instructor::CoursesController < ApplicationController
   end
 
   def show
+    @section = Section.new
+    @lesson = Lesson.new
   end
 
   private
@@ -33,6 +35,6 @@ class Instructor::CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:title, :description, :cost)
+    params.require(:course).permit(:title, :description, :cost, :image)
   end
 end

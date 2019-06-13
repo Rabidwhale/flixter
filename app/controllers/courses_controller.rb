@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  include CurrentCourseLoader
   def index
     @courses = Course.all
   end

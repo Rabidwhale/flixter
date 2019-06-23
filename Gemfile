@@ -90,3 +90,5 @@ gem 'carrierwave-aws'
 gem 'stripe'
 
 gem 'ranked-model'
+
+gem 'font-awesome-rails'

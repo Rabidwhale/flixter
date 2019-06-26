@@ -11,12 +11,8 @@ class LessonsController < ApplicationController
 
   private
 
-  def enrolled_in?(course)
-    return enrolled_courses.include?(course)
-  end
-
   def require_authorized_for_current_lesson
-    if current_lesson.section.course != current_user.enrolled_in?
+    if current_lesson.section.course.user != current_user
       redirect_to course_path, alert: 'You Need to Enroll to View This Page'
     end
   end
